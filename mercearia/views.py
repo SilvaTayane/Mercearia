@@ -1,9 +1,12 @@
 from django.shortcuts import render
 
+from produtos.models import Produto
+
 
 def visualizarHome (request):
-    produtos = Produtos.objects.all()
-    contexto = [
+    produtos = Produto.objects.all()
+    contexto = {
         'produtos' : produtos
-    ]
-    return render(request, 'home.html')
+    }
+        
+    return render(request, 'home.html', contexto)

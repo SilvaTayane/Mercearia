@@ -6,5 +6,6 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('', views.visualizarloja, name='loja'),
+    path('', views.visualizarloja, name='loja' ),
+    path('<slug:categoria_slug>/', views.visualizarloja, name='produtos_por_categoria')
 ] 
