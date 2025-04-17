@@ -12,10 +12,14 @@ def visualizarloja(request, categoria_slug=None):
     if categoria_slug != None:
         categorias = get_object_or_404(Categoria, slug=categoria_slug)
         produtos = Produto.objects.all().filter(categoria = categorias, esta_disponivel=True)
+        prod_quant = produtos.count()
     else:
         produtos = Produto.objects.all().filter(esta_disponivel=True)
-        contexto = {
-            'produtos' : produtos
+        prod_quant = produtos.count()
+
+    contexto = {
+            'produtos' : produtos,
+            'prod_quant': prod_quant,
         }
             
 

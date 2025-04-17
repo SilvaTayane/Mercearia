@@ -31,8 +31,9 @@
                 <div class="card-body">
                     
                     <ul class="list-menu">
+                        <li><a href="{% url 'loja' %}">Todos </a></li>
                     {% for cat in opcoes %}
-                    <li><a href="#">{{ cat.categoria_nome }} </a></li>
+                    <li><a href="{{ cat.get_url }}">{{ cat.categoria_nome }} </a></li>
                     {% endfor %}
                     </ul>
     
@@ -90,7 +91,7 @@
     
     <header class="border-bottom mb-4 pb-3">
             <div class="form-inline">
-                <span class="mr-md-auto">32 Items found </span>
+                <span class="mr-md-auto">{{ prod_quant }} Items found </span>
                 
             </div>
     </header><!-- sect-heading -->
@@ -100,8 +101,11 @@
         <div class="col-md-4">
             <figure class="card card-product-grid">
                 <div class="img-wrap"> 
-                    
-                    <img src="{{ prod.imagens.url }}">
+                    {% if prod.imagens %}
+                        <img src="{{ prod.imagens.url }}">
+                    {% else %}
+                        <h2>Não possui imagens</h2>
+                    {% endif %}
                     
                 </div> <!-- img-wrap.// -->
                 <figcaption class="info-wrap">
