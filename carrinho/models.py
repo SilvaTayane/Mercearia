@@ -10,15 +10,14 @@ class Carrinho(models.Model):
     def __str__(self):
         return self.car_id
 
-class ItemCarrinho(models.Model):
+class CarItem(models.Model):
     produto    = models.ForeignKey(Produto, on_delete=models.CASCADE)
-    carinho    = models.ForeignKey(Carrinho, on_delete=models.CASCADE, null=True)
+    carrinho    = models.ForeignKey(Carrinho, on_delete=models.CASCADE, null=True)
     quantidade = models.IntegerField()
-    preco      = models.IntegerField()
     esta_disponivel = models.BooleanField(default=True)
 
     def getSubtotal(self):
-        return self.preco * self.quantidade
+        return self.produto.preco * self.quantidade
 
 
 
